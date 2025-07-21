@@ -42,7 +42,7 @@ Scan to donate via Venmo:
 3. Follow the installation wizard
 
 ### 🐧 Linux
-1. Download the latest pachage from [Releases](https://github.com/bouness/truss/releases)
+1. Download the latest `Truss-linux.tar.gz` from [Releases](https://github.com/bouness/truss/releases)
 
 ```bash
 tar -xzf Truss-linux.tar.gz
@@ -52,7 +52,7 @@ cd truss-*
 sudo ./installer/install.sh
 
 # to remove
-sudo ./installer/uninstall.sh"
+sudo ./installer/uninstall.sh
 ```
 ## 🛠️ Building from Source
 
