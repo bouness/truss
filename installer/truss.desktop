@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=truss
+Comment=Finite Element Analysis 3D Truss
+Exec=truss
+Icon=/opt/truss/assets/icon.png
+Terminal=false
+Type=Application
+Categories=Structure;Analysis;
+Keywords=truss;analysis;truss;
+StartupWMClass=truss

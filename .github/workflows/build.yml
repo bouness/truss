@@ -1,0 +1,111 @@
+name: Build and Release Truss
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    name: Build for Windows
+    runs-on: windows-latest
+
+    env:
+      VERSION: ${{ github.ref_name }}
+      ISCC_PATH: "C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe"
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+
+    - name: 📦 Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        choco install mingw -y
+
+    - name: 🏗️ Build project and installer
+      run: .\build.bat
+
+    - name: 📤 Upload Windows installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: TrussInstaller
+        path: installer_output/TrussInstaller.exe
+
+    - name: 📤 Upload Windows Portable ZIP
+      uses: actions/upload-artifact@v4
+      with:
+        name: Truss-Windows-Portable
+        path: dist/Truss-Windows-Portable.zip
+
+  build-linux:
+    name: Build for Linux
+    runs-on: ubuntu-latest
+
+    env:
+      VERSION: ${{ github.ref_name }}
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libssl-dev libffi-dev python3-dev
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🛠️ Build with Nuitka
+        run: |
+          chmod +x ./build.sh
+          ./build.sh
+
+      - name: 📤 Upload tar.gz artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Truss-Linux-Package
+          path: Truss-linux.tar.gz
+
+  release:
+    name: 📦 Create GitHub Release
+    needs: [build-windows, build-linux]
+    runs-on: ubuntu-latest
+
+    env:
+      VERSION: ${{ github.ref_name }}
+
+    steps:
+    - name: 📥 Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+
+    - name: 🗂️ List downloaded files
+      run: ls -R artifacts
+
+    - name: 🚀 Publish GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ env.VERSION }}
+        name: Truss ${{ env.VERSION }}
+        files: |
+          artifacts/TrussInstaller/TrussInstaller.exe
+          artifacts/Truss-Windows-Portable/Truss-Windows-Portable.zip
+          artifacts/Truss-Linux-Package/Truss-linux.tar.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variable for local development 
+*.env
+*.env.example
+*.env.local
+*.env.staging
+
+# Virtual environment
+env/
+venv/
+ENV/
+.venv/
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# macOS/Linux
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs and misc
+*.log
+
+# Python eggs
+*.egg
+*.egg-info/
+dist/
+build/
+
+# SQLite database (if generated separately)
+*.sqlite3
+*.db
+
+# PDF Reports (optional, if auto-generated)
+*.pdf
+
+# Compiled as executable files
+*.exe
