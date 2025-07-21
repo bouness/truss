@@ -28,11 +28,8 @@ Scan to donate via Venmo:
 ![Venmo QR](https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://venmo.com/youness-bougteb)
 ## 🧰 Tech Stack
 
-- Python 3.13
-- PySide6
-- Matplotlib
-- ReportLab
-- SQLite3 (no external installation required)
+- Truss Engine: C
+- Truss GUI: Python
 
 ## 📦 Installation
 
