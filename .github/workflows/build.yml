@@ -107,5 +107,3 @@ jobs:
           artifacts/TrussInstaller/TrussInstaller.exe
           artifacts/Truss-Windows-Portable/Truss-Windows-Portable.zip
           artifacts/Truss-Linux-Package/Truss-linux.tar.gz
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

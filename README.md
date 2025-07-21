@@ -42,19 +42,17 @@ Scan to donate via Venmo:
 3. Follow the installation wizard
 
 ### 🐧 Linux
+1. Download the latest pachage from [Releases](https://github.com/bouness/truss/releases)
+
 ```bash
-# Clone repository
-git clone https://github.com/bouness/truss.git
-cd truss
+tar -xzf Truss-linux.tar.gz
+cd truss-*
 
-# Install dependencies
-sudo apt install build-essential python3-pip
-pip install PySide6
+# to install
+sudo ./installer/install.sh
 
-# Build and run
-chmod +x build_linux.sh run_dev.sh
-./build_linux.sh
-./build/linux/run.sh
+# to remove
+sudo ./installer/uninstall.sh"
 ```
 ## 🛠️ Building from Source
 
@@ -65,11 +63,20 @@ Requirements
 
 ### Build Process
 ```bash
+# Clone repository
+git clone https://github.com/bouness/truss.git
+cd truss
+
+# Install dependencies
+sudo apt install build-essential python3-pip
+pip install PySide6
+
 # Build Linux version
-./build_linux.sh
+chmod +x build.sh
+./build.sh
 
 # Build Windows version (requires MinGW)
-./build_windows.bat
+./build.bat
 
 # Run in development mode
 ./run_dev.sh
