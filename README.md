@@ -95,7 +95,7 @@ chmod +x build.sh
       3, 1, 3, 29000, 0.5
       ```
 2. Set Precision:
-    * Choose decimal places (6-12) for calculations
+    * Choose decimal places (1-12) for calculations
 3. Run Analysis:
     * Click "Run Analysis" to process your truss
 4. View Results:
@@ -103,9 +103,9 @@ chmod +x build.sh
     * Save or copy results as needed
 
 ## ⚙️ Technical Details
-* **Engine**: Custom C solver for high-performance calculations
+* **Engine**: Custom C solver for high-performance
 * **GUI**: PySide6 with system-native interface
-* **Packaging**: Nuitka for standalone executables
+* **Packaging**: Nuitka and Inno for installation
 * **Cross-Platform**: Works on Windows and Linux
 
 ## 🤝 Contributing
